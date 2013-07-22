@@ -313,6 +313,8 @@ public class InAppBrowser extends CordovaPlugin {
     private void goBack() {
         if (this.inAppWebView.canGoBack()) {
             this.inAppWebView.goBack();
+        } else {
+        	closeDialog();
         }
     }
 
@@ -403,6 +405,16 @@ public class InAppBrowser extends CordovaPlugin {
                                 Log.d(LOG_TAG, "Should never happen");
                             }
                         }
+                });
+                dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface arg0, int keyCode,
+                            KeyEvent event) {
+                        if (keyCode == KeyEvent.KEYCODE_BACK) {
+                            goBack();
+                        }
+                        return true;
+                    }
                 });
 
                 // Main container layout
