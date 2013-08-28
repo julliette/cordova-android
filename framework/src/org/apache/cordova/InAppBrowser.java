@@ -412,8 +412,9 @@ public class InAppBrowser extends CordovaPlugin {
                             KeyEvent event) {
                         if (keyCode == KeyEvent.KEYCODE_BACK) {
                             goBack();
+                            return true;
                         }
-                        return true;
+                        return false;
                     }
                 });
 
